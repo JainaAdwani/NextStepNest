@@ -7,9 +7,9 @@ export default function Header() {
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
             <Link to='/'>
                 <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-                    <span className='text-red-800'>Next</span>
-                    <span className='text-red-700'>Step</span>
-                    <span className='text-red-600'>Nest</span>
+                    <span className='text-red-700'>Next</span>
+                    <span className='text-red-600'>Step</span>
+                    <span className='text-red-500'>Nest</span>
                 </h1>
             </Link>
             <ul className='flex gap-4 items-center'>
