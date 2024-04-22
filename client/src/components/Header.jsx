@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <header className='bg-black shadow-md hover:bg-zinc-900'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
@@ -20,6 +22,10 @@ export default function Header() {
                 <li className='hidden sm:inline text-white hover:underline hover:text-red-700 hover:text-xl'>About</li>
                 </Link>
                 <Link to='/sign-in'>
+                    {currentUser ? 
+                        (<img className='rounded-full h-8 w-8 object-cover' src={currentUser.avatar} alt='profile'/>)
+                        : (<li className=' text-slate-700 hover:underline'> Sign in</li>)
+                    }
                 <li className='hidden sm:inline text-white hover:underline hover:text-red-700 hover:text-xl'>SignIn</li>
                 </Link>
             </ul>
