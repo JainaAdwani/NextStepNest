@@ -47,6 +47,34 @@ export default function Profile() {
     );
   };
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      dispatch(updateUserStart());
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(updateUserFailure(data.message));
+        return;
+      }
+
+      dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
+  };
+
   return (
     <div className='p-5 max-w-lg mx-auto border-2 border-red-700 rounded-2xl my-36'>
       <h1 className='text-red-700 text-center text-4xl font-semibold my-10'>Profile</h1>
@@ -81,6 +109,10 @@ export default function Profile() {
           Sign out
         </span>
       </div>
+      <p className="text-rose-600 mt-4">{error ? error : '' }</p>
+      <p className='text-green-700 mt-5'>
+        {updateSuccess ? 'User is updated successfully!' : ''}
+      </p>
     </div>
   )
 }
