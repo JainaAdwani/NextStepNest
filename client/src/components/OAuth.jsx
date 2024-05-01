@@ -33,8 +33,12 @@ export default function OAuth() {
     }
   };
   return (
-    <button onClick={handleGoogleClick} type='button' className='bg-white text-red-600 p-3 rounded-lg uppercase hover:opacity-90  hover:border-red-700 hover:border-2 disabled:opacity-50 active:bg-slate-300'>
-        Continue with Google
+    <button
+      onClick={handleGoogleClick}
+      type='button'
+      className='bg-red-700 text-white p-3 rounded-lg uppercase hover:bg-red-600 hover:border-red-700 hover:border-2'
+    >
+      Continue with google
     </button>
-  )
+  );
 }

@@ -16,6 +16,13 @@ export default function SignUp() {
         [e.target.id]: e.target.value,
       });
   };
+  {/*const handleRadioChange = (e) => {
+    setFormData(
+      {
+        ...formData,
+        [e.target.id]: e.target.value,
+      });
+  };*/}
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -39,13 +46,16 @@ export default function SignUp() {
     }
   };
   return (
-    <div className='p-5 max-w-lg mx-auto border-2 border-red-700 rounded-2xl my-36'>
-      <h1 className='text-red-700 text-center text-4xl font-semibold my-10'>SignUp</h1>
+    <div className='p-5 max-w-lg mx-auto border-2 border-rose-700 rounded-2xl my-36'>
+      <h1 className='text-rose-700 text-center text-4xl font-semibold my-10'>SignUp</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input type="text" placeholder="username" className='border-red-700 border p-3 rounded-lg bg-black text-white focus:outline-none active:outline-red-700' id='username' onChange={handleChange}/>
-        <input type="email" placeholder="email" className='border-red-700 border p-3 rounded-lg bg-black text-white focus:outline-none active:outline-red-700' id='email' onChange={handleChange}/>
-        <input type="password" placeholder="password" className='border-red-700 border p-3 rounded-lg bg-black text-white focus:outline-none active:outline-red-700' id='password' onChange={handleChange}/>
-        <button disabled={loading} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-90 hover:border-white hover:border-2 disabled:opacity-50 active:bg-red-600'>
+        <input type="text" placeholder="username" className='border-rose-700 border p-3 rounded-lg bg-black text-white focus:outline-none active:outline-rose-700' id='username' onChange={handleChange}/>
+        <input type="email" placeholder="email" className='border-rose-700 border p-3 rounded-lg bg-black text-white focus:outline-none active:outline-rose-700' id='email' onChange={handleChange}/>
+        <input type="password" placeholder="password" className='border-rose-700 border p-3 rounded-lg bg-black text-white focus:outline-none active:outline-rose-700' id='password' onChange={handleChange}/>
+        {/*<div>
+          <input type="radio" id="Buyer" onChange={handleRadioChange}/>
+  </div>*/}
+        <button disabled={loading} className='bg-rose-700 text-white p-3 rounded-lg uppercase hover:opacity-90 hover:border-white hover:border-2 disabled:opacity-50 active:bg-rose-600'>
           {loading? 'Loading...' : 'Sign Up'}
         </button>
         <OAuth/>
