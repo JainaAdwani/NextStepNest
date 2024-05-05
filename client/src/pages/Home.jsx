@@ -53,7 +53,7 @@ export default function Home() {
       <div className='flex gap-16 p-28 px-5 max-w-6xl mx-auto justify-between'>
         <div className='flex-col'>
           <h1 className='text-yellow-950/70 font-bold text-lg lg:text-2xl mt-36 mb-6'>
-            Find your perfect <span className="text-yellow-950/80">NEST</span>,
+            Find your perfect <span className="text-yellow-950/80 font-serif">NEST</span>,
             <br/> with NextStepNest.
           </h1>
           <Link
@@ -95,7 +95,7 @@ export default function Home() {
           <div className=''>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
+              <Link className='text-sky-800 hover:underline hover:text-sky-700 hover:font-medium' to={'/search?offer=true'}>Show more offers</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {offerListings.map((listing) => (
@@ -108,7 +108,7 @@ export default function Home() {
           <div className=''>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
+              <Link className='text-sky-800 hover:underline hover:text-sky-700 hover:font-medium' to={'/search?type=rent'}>Show more places for rent</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {rentListings.map((listing) => (
@@ -121,7 +121,7 @@ export default function Home() {
           <div className=''>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sale</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>Show more places for sale</Link>
+              <Link className='text-sky-800 hover:underline hover:text-sky-700 hover:font-medium' to={'/search?type=sale'}>Show more places for sale</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {saleListings.map((listing) => (
@@ -135,10 +135,10 @@ export default function Home() {
 
 
       {/*ABout Us Video like gpoyal*/}
-      <div className='flex justify-center'>
+      <div className='flex justify-center mt-24'>
         {/*Left */}
-        <div className='mr-28'>
-          <h1 className='text-2xl'>Aiding People <span className='font-bold'>Since 2001</span></h1>
+        <div className='mr-28 border-y-2 border-yellow-900/50 font-serif'>
+          <h1 className='text-2xl mt-24'>Aiding People <span className='font-bold'>Since 2001</span></h1>
           <p className='mt-4'>
           NextStepNest isn't just a platform to buy and sell properties;<br/>
           it's your stepping stone to a brighter future.<br/>
@@ -173,29 +173,4 @@ export default function Home() {
 
     </div>
   );
-
-  
-  {/*return (
-    <div className='flex gap-16 p-28 px-5 max-w-6xl mx-auto justify-between'>
-      <div className=''>
-        <h1 className='text-white font-bold text-lg lg:text-3xl mt-36 mb-6'>
-          Find your perfect <span className="text-rose-600">NEST</span>,
-          <br/> with NextStepNest.
-        </h1>
-        <Link to="/search">
-          <div className='flex gap-2 text-rose-700'>
-            Let's Get Started
-            <div className="justify-between mt-1">
-              <FaRegArrowAltCircleRight/>
-            </div>
-          </div>
-        </Link>
-      </div>
-      <div className='justify-end ml-14'>
-        <img src="./Hero_House.png" alt='House' className='size-full'/>
-      </div>
-
-      
-    </div>
-  )*/}
 }

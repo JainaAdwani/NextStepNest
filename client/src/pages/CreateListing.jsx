@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from 'firebase/storage';
 import { app } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -150,7 +155,7 @@ export default function CreateListing() {
   };
   return (
     <main className='p-3 max-w-4xl mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>
+      <h1 className='text-yellow-900/90 text-center text-4xl font-semibold my-10'>
         Create a Listing
       </h1>
       <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
@@ -158,7 +163,7 @@ export default function CreateListing() {
           <input
             type='text'
             placeholder='Name'
-            className='border-rose-700 border p-3 rounded-lg bg-black text-white focus:outline-none active:outline-rose-700'
+            className='border-yellow-900/50 border p-3 rounded-lg bg-yellow-900/5 text-slate-900/90 hover:brightness-75 focus:outline-none active:outline-yellow-900/50 placeholder:text-slate-400'
             id='name'
             maxLength='62'
             minLength='10'
@@ -169,7 +174,7 @@ export default function CreateListing() {
           <textarea
             type='text'
             placeholder='Description'
-            className='border-rose-700 border p-3 rounded-lg bg-black text-white focus:outline-none active:outline-rose-700'
+            className='border-yellow-900/50 border p-3 rounded-lg bg-yellow-900/5 text-slate-900/90 hover:brightness-75 focus:outline-none active:outline-yellow-900/50 placeholder:text-slate-400'
             id='description'
             required
             onChange={handleChange}
@@ -178,13 +183,13 @@ export default function CreateListing() {
           <input
             type='text'
             placeholder='Address'
-            className='border-rose-700 border p-3 rounded-lg bg-black text-white focus:outline-none active:outline-rose-700'
+            className='border-yellow-900/50 border p-3 rounded-lg bg-yellow-900/5 text-slate-900/90 hover:brightness-75 focus:outline-none active:outline-yellow-900/50 placeholder:text-slate-400'
             id='address'
             required
             onChange={handleChange}
             value={formData.address}
           />
-          <div className='flex gap-6 flex-wrap'>
+          <div className='flex gap-6 flex-wrap mt-8'>
             <div className='flex gap-2'>
               <input
                 type='checkbox'
@@ -236,7 +241,7 @@ export default function CreateListing() {
               <span>Offer</span>
             </div>
           </div>
-          <div className='flex flex-wrap gap-6'>
+          <div className='flex flex-wrap gap-6 mt-6'>
             <div className='flex items-center gap-2'>
               <input
                 type='number'
@@ -248,7 +253,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 value={formData.bedrooms}
               />
-              <p>Beds</p>
+              <p>Bedrooms</p>
             </div>
             <div className='flex items-center gap-2'>
               <input
@@ -261,7 +266,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 value={formData.bathrooms}
               />
-              <p>Baths</p>
+              <p>Bathrooms</p>
             </div>
             <div className='flex items-center gap-2'>
               <input
@@ -277,7 +282,7 @@ export default function CreateListing() {
               <div className='flex flex-col items-center'>
                 <p>Regular price</p>
                 {formData.type === 'rent' && (
-                  <span className='text-xs'>($ / month)</span>
+                  <span className='text-sm'>(₹ / month)</span>
                 )}
               </div>
             </div>
@@ -314,7 +319,7 @@ export default function CreateListing() {
           <div className='flex gap-4'>
             <input
               onChange={(e) => setFiles(e.target.files)}
-              className='p-3 border border-gray-300 rounded w-full'
+              className='p-3 border border-gray-300 rounded w-full cursor-pointer'
               type='file'
               id='images'
               accept='image/*'
@@ -354,7 +359,7 @@ export default function CreateListing() {
             ))}
           <button
             disabled={loading || uploading}
-            className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+            className='bg-sky-900 text-white rounded-lg p-3 uppercase hover:bg-sky-700 hover:border-sky-700/90 hover:border-2 disabled:opacity-40 active:bg-sky-900'
           >
             {loading ? 'Creating...' : 'Create listing'}
           </button>

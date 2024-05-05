@@ -344,7 +344,7 @@ export default function CreateListing() {
               type='button'
               disabled={uploading}
               onClick={handleImageSubmit}
-              className='p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80'
+              className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:bg-green-600 hover:border-green-700/90 hover:border-2 disabled:opacity-40 active:bg-green-700'
             >
               {uploading ? 'Uploading...' : 'Upload'}
             </button>
@@ -366,7 +366,7 @@ export default function CreateListing() {
                 <button
                   type='button'
                   onClick={() => handleRemoveImage(index)}
-                  className='p-3 text-red-700 rounded-lg uppercase hover:opacity-75'
+                  className='text-red-700 cursor-pointer hover:underline hover:text-red-600 hover:font-semibold'
                 >
                   Delete
                 </button>
@@ -374,7 +374,7 @@ export default function CreateListing() {
             ))}
           <button
             disabled={loading || uploading}
-            className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+            className='bg-sky-900 text-white rounded-lg p-3 uppercase hover:bg-sky-700 hover:border-sky-700/90 hover:border-2 disabled:opacity-40 active:bg-sky-900'
           >
             {loading ? 'Updating...' : 'Update listing'}
           </button>
