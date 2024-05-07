@@ -136,15 +136,20 @@ export default function Listing() {
                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
               </li>
             </ul>
-            {currentUser && listing.userRef !== currentUser._id && !contact && (
-              <button
-                onClick={() => setContact(true)}
-                className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
-              >
-                Contact landlord
+            <div className='flex flex-row gap-4'>
+              {currentUser && listing.userRef !== currentUser._id && !contact && (
+                <button
+                  onClick={() => setContact(true)}
+                  className='bg-sky-900 text-white rounded-lg p-3 uppercase hover:bg-sky-700 hover:border-sky-700/90 hover:border-2 disabled:opacity-40 active:bg-sky-900 w-48'
+                >
+                  Contact landlord
+                </button>
+              )}
+              {contact && <Contact listing={listing} />}
+              <button className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:bg-green-600 hover:border-green-700/90 hover:border-2 disabled:opacity-40 active:bg-green-700 w-48'>
+                 Pay
               </button>
-            )}
-            {contact && <Contact listing={listing} />}
+            </div>
           </div>
         </div>
       )}

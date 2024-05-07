@@ -50,9 +50,9 @@ export default function Home() {
   return (
     <div>
       {/* top */}
-      <div className='flex gap-16 p-28 px-5 max-w-6xl mx-auto justify-between'>
+      <div className='flex flex-col sm:flex-row gap-16 justify-between mx-auto max-w-6xl p-28 px-5'>
         <div className='flex-col'>
-          <h1 className='text-yellow-950/70 font-bold text-lg lg:text-2xl mt-36 mb-6'>
+          <h1 className='text-yellow-950/70 font-bold text-lg lg:text-2xl sm:mt-36 mb-6'>
             Find your perfect <span className="text-yellow-950/80 font-serif">NEST</span>,
             <br/> with NextStepNest.
           </h1>
@@ -135,16 +135,17 @@ export default function Home() {
 
 
       {/*ABout Us Video like gpoyal*/}
-      <div className='flex justify-center mt-24'>
+      <div className='flex flex-col sm:flex-row justify-center mx-auto mt-24'>
         {/*Left */}
-        <div className='mr-28 border-y-2 border-yellow-900/50 font-serif'>
-          <h1 className='text-2xl mt-24'>Aiding People <span className='font-bold'>Since 2001</span></h1>
-          <p className='mt-4'>
+        <div className=' mr-8 sm:mr-28 ml-8 sm:ml-0 border-y-2 border-yellow-900/50 font-serif'>
+          <h1 className='flex justify-center sm:justify-normal text-2xl mt-14 sm:mt-28'>Aiding People <span className='font-bold'>Since 2001</span></h1>
+          <p className='flex justify-center sm:justify-normal mt-4'>
           NextStepNest isn't just a platform to buy and sell properties;<br/>
           it's your stepping stone to a brighter future.<br/>
           We believe buying or selling a house is a significant life event,<br/>
           and we're here to guide you through every step of the process.<br/>
           </p>
+          <div className='flex justify-center sm:justify-normal mb-14 sm:mb-0'>
           <Link
             to={'/about'}
             className='flex gap-3 text-white font-bold border-2 w-32 bg-lime-700/80 border-lime-700/80 rounded-full ps-2 pe-2 mt-16 hover:text-lg hover:w-36'>
@@ -153,9 +154,10 @@ export default function Home() {
               <FaArrowRight />
             </div>
           </Link>
+          </div>
         </div>
         {/*Rigth */}
-        <div className='ml-28'>
+        <div className='flex justify-center ml-0 sm:ml-28 mt-10'>
           <video src={introVideo} autoPlay loop muted width={450} />
         </div>
       </div>

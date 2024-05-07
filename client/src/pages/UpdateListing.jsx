@@ -8,6 +8,7 @@ import {
 import { app } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ImBin } from "react-icons/im";
 
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -171,7 +172,7 @@ export default function CreateListing() {
   };
   return (
     <main className='p-3 max-w-4xl mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>
+      <h1 className='text-yellow-900/90 text-center text-4xl font-semibold my-10'>
         Update a Listing
       </h1>
       <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
@@ -366,9 +367,9 @@ export default function CreateListing() {
                 <button
                   type='button'
                   onClick={() => handleRemoveImage(index)}
-                  className='text-red-700 cursor-pointer hover:underline hover:text-red-600 hover:font-semibold'
+                  className='flex flex-row gap-1 text-red-700 cursor-pointer hover:underline hover:text-red-600 hover:font-semibold'
                 >
-                  Delete
+                  <ImBin className='mt-1'/> Delete
                 </button>
               </div>
             ))}

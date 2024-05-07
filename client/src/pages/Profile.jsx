@@ -8,16 +8,14 @@ import {
 } from 'firebase/storage';
 import { app } from '../firebase';
 import {
-  updateUserStart,
-  updateUserSuccess,
-  updateUserFailure,
-  deleteUserFailure,
-  deleteUserStart,
-  deleteUserSuccess,
+  updateUserStart, updateUserSuccess, updateUserFailure,
+  deleteUserFailure, deleteUserStart, deleteUserSuccess,
   signOutUserStart,
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { ImBin } from "react-icons/im";
+import { MdOutlineModeEdit } from "react-icons/md";
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -273,11 +271,13 @@ export default function Profile() {
                 <div className='flex flex-col item-center'>
                   <button
                     onClick={() => handleListingDelete(listing._id)}
-                    className='text-red-700 cursor-pointer hover:underline hover:text-red-600 hover:font-semibold'>
-                    Delete
+                    className='flex flex-row gap-1 text-red-700 cursor-pointer hover:underline hover:text-red-600 hover:font-semibold'>
+                    <ImBin className='mt-1'/> Delete
                   </button>
                   <Link to={`/update-listing/${listing._id}`}>
-                    <button className='text-green-700 w-full hover:underline hover:text-green-600 hover:font-semibold'>Edit</button>
+                    <button className='flex felx-row gap-1 text-green-700 w-full hover:underline hover:text-green-600 hover:font-semibold'>
+                    <MdOutlineModeEdit className='mt-1' /> Edit
+                    </button>
                   </Link>
                 </div>
               </div>

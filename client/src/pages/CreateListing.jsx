@@ -1,37 +1,26 @@
 import { useState } from 'react';
-import {
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytesResumable,
-} from 'firebase/storage';
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { ImBin } from "react-icons/im";
+import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice';
 
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
-  const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
-    imageUrls: [],
-    name: '',
-    description: '',
-    address: '',
-    type: 'rent',
-    bedrooms: 1,
-    bathrooms: 1,
-    regularPrice: 50,
-    discountPrice: 0,
-    offer: false,
-    parking: false,
-    furnished: false,
+    imageUrls: [], name: '', description: '', address: '',
+    type: 'rent', bedrooms: 1, bathrooms: 1, regularPrice: 50,
+    discountPrice: 0, offer: false, parking: false, furnished: false,
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(formData);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
       setUploading(true);
@@ -130,8 +119,9 @@ export default function CreateListing() {
         return setError('You must upload at least one image');
       if (+formData.regularPrice < +formData.discountPrice)
         return setError('Discount price must be lower than regular price');
-      setLoading(true);
-      setError(false);
+      // setLoading(true);
+      // setError(false);
+      dispatch(signInStart());
       const res = await fetch('/api/listing/create', {
         method: 'POST',
         headers: {
@@ -143,14 +133,17 @@ export default function CreateListing() {
         }),
       });
       const data = await res.json();
-      setLoading(false);
+      //setLoading(false);
       if (data.success === false) {
-        setError(data.message);
+        //setError(data.message);
+        dispatch(signInFailure(data.message));
       }
+      dispatch(signInSuccess(data));
       navigate(`/listing/${data._id}`);
     } catch (error) {
-      setError(error.message);
-      setLoading(false);
+      // setError(error.message);
+      // setLoading(false);
+      dispatch(signInFailure(error.message));
     }
   };
   return (
@@ -302,7 +295,7 @@ export default function CreateListing() {
                   <p>Discounted price</p>
 
                   {formData.type === 'rent' && (
-                    <span className='text-xs'>($ / month)</span>
+                    <span className='text-xs'>(₹ / month)</span>
                   )}
                 </div>
               </div>
@@ -351,9 +344,9 @@ export default function CreateListing() {
                 <button
                   type='button'
                   onClick={() => handleRemoveImage(index)}
-                  className='p-3 text-red-700 rounded-lg uppercase hover:opacity-75'
+                  className='flex flex-row gap-1 p-3 text-red-700 cursor-pointer hover:underline hover:text-red-600 hover:font-semibold'
                 >
-                  Delete
+                  <ImBin className='mt-1'/> Delete
                 </button>
               </div>
             ))}
