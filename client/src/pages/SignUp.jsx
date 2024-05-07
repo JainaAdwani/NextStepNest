@@ -18,13 +18,6 @@ export default function SignUp() {
         [e.target.id]: e.target.value,
       });
   };
-  
-  // const handleRadioChange = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     type: e,
-  //   }); 
-  // };
 
   const handleRadioChange = (value) => { // Uncommented handleRadioChange
     setSelectedValue(value); // Set the selected value
@@ -34,14 +27,14 @@ export default function SignUp() {
     });
   };
 
-  const formDataWithUserType = {
-    ...formData,
-    userType: selectedValue // Use the selectedValue as userType
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const formDataWithUserType = {
+        ...formData,
+        userType: selectedValue // Use the selectedValue as userType
+      };
+
       dispatch(signInStart());
 
       const res = await fetch('/api/auth/signup', {
@@ -70,46 +63,30 @@ export default function SignUp() {
         <input type="text" placeholder="username" className='border-yellow-900/50 border p-3 rounded-lg bg-yellow-900/5 text-slate-900/90 hover:brightness-75 focus:outline-none active:outline-yellow-900/50 placeholder:text-slate-400' id='username' onChange={handleChange}/>
         <input type="email" placeholder="email" className='border-yellow-900/50 border p-3 rounded-lg bg-yellow-900/5 text-slate-900/90 hover:brightness-75 focus:outline-none active:outline-yellow-900/50 placeholder:text-slate-400' id='email' onChange={handleChange}/>
         <input type="password" placeholder="password" className='border-yellow-900/50 border p-3 rounded-lg bg-yellow-900/5 text-slate-900/90 hover:brightness-75 focus:outline-none active:outline-yellow-900/50 placeholder:text-slate-400' id='password' onChange={handleChange}/>
-        {/* <div className="flex flex-row justify-between mx-auto gap-14">
-          <div className="flex gap-1.5">
-            <input type="radio" id="Buyer" className="mt-1.5" checked={selectedValue === "Buyer/Seller"}  onChange={ () =>  handleRadioChange(Buyer/Seller)}/>
-            <span>Buyer / Seller</span>
-          </div>
-          <div className="flex gap-1.5">
-            <input type="radio" id="Agent" className="mt-1.5" checked={selectedValue === "Agent"} onChange={ () =>  handleRadioChange(Agent)}/>
-            <span>Agent</span>
-          </div>
-        </div> */}
-
-
-<div className="flex justify-center">
-        <div className="flex flex-row gap-4 text-center">
-          <div
-            className={`${
-              selectedValue === "Buyer/Seller"
-                ? "bg-yellow-900/40 text-white border-yellow-900/40"
-                : "bg-white text-yellow-900/75 border-yellow-900/40"
-            } border-2 rounded-lg py-3 px-4 m-2 flex items-center justify-center w-36 cursor-pointer transition duration-300 ease-in-out`}
-            onClick={() => setSelectedValue("Buyer/Seller")}
-          >
-            Buyer / Seller
-          </div>
-          <div
-            className={`${
-              selectedValue === "Agent"
-                ? "bg-yellow-900/40 text-white border-yellow-900/40"
-                : "bg-white text-yellow-900/75 border-yellow-900/40"
-            } border-2 rounded-lg py-3 px-4 m-2 flex items-center justify-center w-36 cursor-pointer transition duration-300 ease-in-out`}
-            onClick={() => setSelectedValue("Agent")}
-          >
-            Agent
+        <div className="flex justify-center">
+          <div className="flex flex-row gap-4 text-center">
+            <div
+              className={`${
+                selectedValue === "Buyer/Seller"
+                  ? "bg-yellow-900/40 text-white border-yellow-900/40"
+                  : "bg-white text-yellow-900/75 border-yellow-900/40"
+              } border-2 rounded-lg py-3 px-4 m-2 flex items-center justify-center w-36 cursor-pointer transition duration-300 ease-in-out`}
+              onClick={() => setSelectedValue("Buyer/Seller")}
+            >
+              Buyer / Seller
+            </div>
+            <div
+              className={`${
+                selectedValue === "Agent"
+                  ? "bg-yellow-900/40 text-white border-yellow-900/40"
+                  : "bg-white text-yellow-900/75 border-yellow-900/40"
+              } border-2 rounded-lg py-3 px-4 m-2 flex items-center justify-center w-36 cursor-pointer transition duration-300 ease-in-out`}
+              onClick={() => setSelectedValue("Agent")}
+            >
+              Agent
+            </div>
           </div>
         </div>
-      </div>
-
-
-
-
         <button disabled={loading} className='bg-yellow-900/90 text-white p-3 rounded-lg uppercase hover:bg-yellow-700 hover:border-yellow-900/70 hover:border-2 disabled:opacity-40 active:bg-yellow-900/90'>
           {loading? 'Loading...' : 'Sign Up'}
         </button>

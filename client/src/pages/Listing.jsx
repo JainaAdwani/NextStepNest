@@ -15,6 +15,7 @@ import {
   FaShare,
 } from 'react-icons/fa';
 import Contact from '../components/Contact';
+import GooglePayQRCode from '../components/GooglePayQRCode.jsx';
 
 // https://sabe.io/blog/javascript-format-numbers-commas#:~:text=The%20best%20way%20to%20format,format%20the%20number%20with%20commas.
 
@@ -25,6 +26,7 @@ export default function Listing() {
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [contact, setContact] = useState(false);
+  const [payment, setPayment] = useState(false);
   const params = useParams();
   const { currentUser } = useSelector((state) => state.user);
 
@@ -49,6 +51,16 @@ export default function Listing() {
     };
     fetchListing();
   }, [params.listingId]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setPayment(false);
+  };
 
   return (
     <main>
@@ -56,8 +68,10 @@ export default function Listing() {
       {error && (
         <p className='text-center my-7 text-2xl'>Something went wrong!</p>
       )}
+       {isOpen && <GooglePayQRCode upiID="jainadwani08@okicici" amount={listing.regularPrice}  onClose={handleClose}/>}
       {listing && !loading && !error && (
         <div>
+          
           <Swiper navigation>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
@@ -136,19 +150,25 @@ export default function Listing() {
                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
               </li>
             </ul>
-            <div className='flex flex-row gap-4'>
+            <div className='flex flex-col gap-2'>
               {currentUser && listing.userRef !== currentUser._id && !contact && (
                 <button
                   onClick={() => setContact(true)}
-                  className='bg-sky-900 text-white rounded-lg p-3 uppercase hover:bg-sky-700 hover:border-sky-700/90 hover:border-2 disabled:opacity-40 active:bg-sky-900 w-48'
+                  className='bg-sky-900 text-white rounded-lg p-3 uppercase hover:bg-sky-700 hover:border-sky-700/90 hover:border-2 disabled:opacity-40 active:bg-sky-900 w-3/4 sm:w-1/2'
                 >
                   Contact landlord
                 </button>
               )}
               {contact && <Contact listing={listing} />}
-              <button className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:bg-green-600 hover:border-green-700/90 hover:border-2 disabled:opacity-40 active:bg-green-700 w-48'>
-                 Pay
-              </button>
+              {currentUser && listing.userRef !== currentUser._id && !payment && (
+                <button
+                  onClick={() =>{ setPayment(true);setIsOpen(true)}}
+                  className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:bg-green-600 hover:border-green-700/90 hover:border-2 disabled:opacity-40 active:bg-green-700 w-3/4 sm:w-1/2'
+                >
+                  Pay
+                </button>
+              )}
+             
             </div>
           </div>
         </div>
